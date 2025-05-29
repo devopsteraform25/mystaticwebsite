@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - npm install  # Optional: Only if you're using npm packages like uglify-js
+  build:
+    commands:
+      - echo "Running build steps..."
+      - ls -al
+      - mkdir -p dist
+      - find . -name "*.js" -exec uglifyjs {} -o dist/{} \;  # Example: Minify all JS files
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist  # Optional: Use this if you're putting your final files into dist/
